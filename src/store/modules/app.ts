@@ -1,4 +1,4 @@
-import { getScores } from '@vfatouros/snapshot.js/src/utils';
+import { getScores } from '@build-finance/snapshot.js/src/utils';
 import client from '@/helpers/client';
 import ipfs from '@/helpers/ipfs';
 import getProvider from '@/helpers/provider';

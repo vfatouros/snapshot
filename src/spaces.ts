@@ -1,10 +1,10 @@
 const requireSpace = require.context(
-  '@vfatouros/snapshot-spaces/spaces/',
+  '@build-finance/snapshot-spaces/spaces/',
   true,
   /[\w-]+\.json$/
 );
 const requireSkin = require.context(
-  '@vfatouros/snapshot-spaces/spaces/',
+  '@build-finance/snapshot-spaces/spaces/',
   true,
   /[\w-]+\.scss$/
 );
