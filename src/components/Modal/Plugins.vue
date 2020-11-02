@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import plugins from '@snapshot-labs/snapshot.js/src/plugins';
+import plugins from '@vfatouros/snapshot.js/src/plugins';
 import { clone } from '@/helpers/utils';
 
 export default {
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     getLogoUrl(plugin) {
-      return `https://raw.githubusercontent.com/snapshot-labs/snapshot.js/master/src/plugins/${plugin}/logo.png`;
+      return `https://raw.githubusercontent.com/vfatouros/snapshot.js/master/src/plugins/${plugin}/logo.png`;
     }
   }
 };

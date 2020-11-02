@@ -15,13 +15,7 @@
             class="button-outline width-full v-align-middle"
           >
             <img
-<<<<<<< HEAD
-              :src="
-                `https://raw.githubusercontent.com/build-finance/lock/master/connectors/assets/${connector.id}.png`
-              "
-=======
               :src="`${path}/${connector.id}.png`"
->>>>>>> upstream/develop
               height="28"
               width="28"
               class="mr-1 v-align-middle"
