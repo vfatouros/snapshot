@@ -1,5 +1,5 @@
 const requireFile = require.context(
-  '@vfatouros/snapshot.js/src/strategies',
+  '@build-finance/snapshot.js/src/strategies',
   true,
   /index\.ts$/
 );

@@ -5,7 +5,7 @@
         <a
           v-text="strategy.key"
           :href="
-            `https://github.com/vfatouros/snapshot.js/tree/master/src/strategies/${strategy.key}`
+            `https://github.com/build-finance/snapshot.js/tree/master/src/strategies/${strategy.key}`
           "
           target="_blank"
         />

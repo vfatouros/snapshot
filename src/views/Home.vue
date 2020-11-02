@@ -69,7 +69,7 @@
 <script>
 import { mapActions } from 'vuex';
 import orderBy from 'lodash/orderBy';
-import spotlight from '@vfatouros/snapshot-spaces/spaces/spotlight.json';
+import spotlight from '@build-finance/snapshot-spaces/spaces/spotlight.json';
 
 export default {
   data() {

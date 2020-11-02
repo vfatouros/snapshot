@@ -1,7 +1,7 @@
 import {
   SNAPSHOT_SUBGRAPH_URL,
   subgraphRequest
-} from '@vfatouros/snapshot.js/src/utils';
+} from '@build-finance/snapshot.js/src/utils';
 
 export async function getDelegates(network, address, snapshot = 'latest') {
   const params = {

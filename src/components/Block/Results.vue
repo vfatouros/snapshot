@@ -57,7 +57,7 @@
 <script>
 import { mapActions } from 'vuex';
 import * as jsonexport from 'jsonexport/dist';
-import plugins from '@vfatouros/snapshot.js/src/plugins';
+import plugins from '@build-finance/snapshot.js/src/plugins';
 import pkg from '@/../package.json';
 
 export default {

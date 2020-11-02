@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import networks from '@vfatouros/snapshot.js/src/networks.json';
+import networks from '@build-finance/snapshot.js/src/networks.json';
 import { filterNetworks } from '@/helpers/utils';
 
 export default {

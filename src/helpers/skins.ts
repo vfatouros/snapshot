@@ -1,5 +1,5 @@
 const requireFile = require.context(
-  '@vfatouros/snapshot-spaces/skins/',
+  '@build-finance/snapshot-spaces/skins/',
   true,
   /[\w-]+\.scss$/
 );

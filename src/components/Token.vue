@@ -19,7 +19,7 @@ export default {
           ? 'space'
           : `logo${this.symbolIndex}`
         : 'logo';
-      return `https://raw.githubusercontent.com/vfatouros/snapshot-spaces/master/spaces/${this.space}/${file}.png`;
+      return `https://raw.githubusercontent.com/build-finance/snapshot-spaces/master/spaces/${this.space}/${file}.png`;
     }
   }
 };
