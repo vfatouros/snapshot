@@ -19,7 +19,11 @@ export default {
           ? 'space'
           : `logo${this.symbolIndex}`
         : 'logo';
+<<<<<<< HEAD
       return `https://raw.githubusercontent.com/build-finance/snapshot-spaces/master/spaces/${this.space}/${file}.png`;
+=======
+      return `https://raw.githubusercontent.com/snapshot-labs/snapshot-spaces/master/spaces/${this.space}/${file}.png`;
+>>>>>>> upstream/develop
     }
   }
 };

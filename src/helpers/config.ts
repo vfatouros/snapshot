@@ -1,10 +1,8 @@
 import connectors from '@/helpers/connectors.json';
-import networks from '@/helpers/networks.json';
 
 const config = {
   env: 'master',
-  connectors,
-  networks
+  connectors
 };
 
 const domainName = window.location.hostname;
@@ -13,9 +11,7 @@ if (domainName === 'demo.snapshot.page' || domainName === 'beta.snapshot.page')
   config.env = 'develop';
 if (domainName === 'snapshot.page') {
   // @ts-ignore
-  delete config.connectors.walletconnect;
-  // @ts-ignore
-  delete config.connectors.walletlink;
+  delete config.connectors.portis;
 }
 
 export default config;

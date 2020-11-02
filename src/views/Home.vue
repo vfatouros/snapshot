@@ -35,12 +35,19 @@
               class="text-center extra-icon-container"
               style="height: 250px; margin-bottom: 24px !important;"
             >
-              <Token
-                :space="space.key"
-                symbolIndex="space"
-                size="98"
-                class="my-3"
-              />
+              <span class="position-relative d-inline-block">
+                <UiCounter
+                  v-if="space._activeProposals"
+                  :counter="space._activeProposals"
+                  class="position-absolute top-4 right-0 bg-green"
+                />
+                <Token
+                  :space="space.key"
+                  symbolIndex="space"
+                  size="98"
+                  class="my-3"
+                />
+              </span>
               <StatefulIcon
                 :on="space.favorite"
                 onName="star"
@@ -62,24 +69,27 @@
 <script>
 import { mapActions } from 'vuex';
 import orderBy from 'lodash/orderBy';
+<<<<<<< HEAD
 import spotlight from '@build-finance/snapshot-spaces/spaces/spotlight.json';
 import domains from '@build-finance/snapshot-spaces/spaces/domains.json';
 import spaces from '@/spaces';
+=======
+import spotlight from '@snapshot-labs/snapshot-spaces/spaces/spotlight.json';
+>>>>>>> upstream/develop
 
 export default {
   data() {
     return {
-      q: '',
-      limit: 16,
-      domains
+      q: this.$route.query.q || '',
+      limit: 16
     };
   },
   computed: {
     spaces() {
-      const list = Object.keys(spaces).map(key => {
+      const list = Object.keys(this.app.spaces).map(key => {
         const spotlightIndex = spotlight.indexOf(key);
         return {
-          ...spaces[key],
+          ...this.app.spaces[key],
           favorite: !!this.favoriteSpaces.favorites[key],
           spotlight: spotlightIndex === -1 ? 1e3 : spotlightIndex
         };
@@ -110,14 +120,6 @@ export default {
     }
   },
   created() {
-    const domainName = window.location.hostname;
-    if (domains[domainName])
-      return this.$router.push({
-        name: 'proposals',
-        params: {
-          key: domains[domainName]
-        }
-      });
     this.loadFavoriteSpaces();
   }
 };

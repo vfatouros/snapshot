@@ -15,7 +15,9 @@
         <div class="d-flex">
           <span v-text="'Snapshot'" class="flex-auto text-gray mr-1" />
           <a
-            :href="_explorer(proposal.msg.payload.snapshot, 'block')"
+            :href="
+              _explorer(space.network, proposal.msg.payload.snapshot, 'block')
+            "
             target="_blank"
             class="float-right"
           >
@@ -25,10 +27,16 @@
         </div>
         <div class="d-flex">
           <span v-text="'Your voting power'" class="flex-auto text-gray mr-1" />
-          <span v-for="(symbol, i) of symbols" :key="symbol">
-            {{ _numeral(scores[i]) }}
-            {{ symbol }}
-            <span v-show="i !== symbols.length - 1" v-text="'+'" class="mr-1" />
+          <span
+            class="tooltipped tooltipped-nw"
+            :aria-label="
+              scores
+                .map((score, index) => `${_numeral(score)} ${symbols[index]}`)
+                .join(' + ')
+            "
+          >
+            {{ _numeral(scores.reduce((a, b) => a + b, 0)) }}
+            {{ _shorten(space.symbol, 'symbol') }}
           </span>
         </div>
       </div>
@@ -74,8 +82,7 @@ export default {
   },
   computed: {
     symbols() {
-      if (!this.space.strategies) return [this.space.symbol];
-      return this.space.strategies.map(strategy => strategy[1].symbol);
+      return this.space.strategies.map(strategy => strategy.params.symbol);
     }
   },
   methods: {
@@ -83,7 +90,7 @@ export default {
     async handleSubmit() {
       this.loading = true;
       await this.send({
-        token: this.space.address,
+        space: this.space.key,
         type: 'vote',
         payload: {
           proposal: this.id,
