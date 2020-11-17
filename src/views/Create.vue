@@ -123,7 +123,7 @@
 <script>
 import { mapActions } from 'vuex';
 import draggable from 'vuedraggable';
-import { ipfsGet } from '@snapshot-labs/snapshot.js/src/utils';
+import { ipfsGet } from '@vfatouros/snapshot.js/src/utils';
 import { getBlockNumber } from '@/helpers/web3';
 import getProvider from '@/helpers/provider';
 

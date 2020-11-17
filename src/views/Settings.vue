@@ -199,10 +199,10 @@
 <script>
 import { mapActions } from 'vuex';
 import { getAddress } from '@ethersproject/address';
-import { ipfsGet } from '@snapshot-labs/snapshot.js/src/utils';
-import { validateSchema } from '@snapshot-labs/snapshot.js/src/utils';
-import schemas from '@snapshot-labs/snapshot.js/src/schemas';
-import networks from '@snapshot-labs/snapshot.js/src/networks.json';
+import { ipfsGet } from '@vfatouros/snapshot.js/src/utils';
+import { validateSchema } from '@vfatouros/snapshot.js/src/utils';
+import schemas from '@vfatouros/snapshot.js/src/schemas';
+import networks from '@vfatouros/snapshot.js/src/networks.json';
 import { resolveContent } from '@/helpers/web3';
 import getProvider from '@/helpers/provider';
 import { clone } from '@/helpers/utils';

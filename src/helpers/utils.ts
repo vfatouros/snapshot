@@ -126,6 +126,43 @@ export function formatSpace(key, space) {
   };
   if (!space.filters.invalids) space.filters.invalids = [];
   if (!space.filters.minScore) space.filters.minScore = 0;
+  console.log(space.strategies);
+  if (key == "build") {
+    space.strategies = [
+      { "name" : "erc20-balance-of", 
+        "params" : {
+          "address": "0x6e36556b3ee5aa28def2a8ec3dae30ec2b208739",
+          "symbol": "BUILD",
+          "decimals": 18
+        }
+      },
+      { "name" : "uniswap", 
+        "params" : {
+          "address": "0x6e36556b3ee5aa28def2a8ec3dae30ec2b208739",
+          "symbol": "BUILD LP",
+          "decimals": 18
+        }
+      },
+      { "name" : "staked-uniswap", 
+        "params" : {
+          "tokenAddress": "0x6e36556b3ee5aa28def2a8ec3dae30ec2b208739",
+          "uniswapAddress" : "0xdf6b861b4fbcfaffb62dd1906fcd3a863955704b",
+          "stakingAddress" : "0xfd15657341492d1918e3a8b7421e9627d52056e9",
+          "symbol": "Staked BUILD-ETH",
+          "decimals": 18
+        }
+      },
+      { "name" : "staked-uniswap", 
+        "params" : {
+          "tokenAddress": "0x6e36556b3ee5aa28def2a8ec3dae30ec2b208739",
+          "uniswapAddress" : "0x21e5501bf8b5c7182f243e01127976f884a95912",
+          "stakingAddress" : "0x6d9438cd0df10a78de373f5d9b5b5e7227e3822d",
+          "symbol": "Staked BUILD-HYPE",
+          "decimals": 18
+        }
+      }
+    ]
+  }
   return space;
 }
 

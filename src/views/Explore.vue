@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import networks from '@snapshot-labs/snapshot.js/src/networks.json';
+import networks from '@vfatouros/snapshot.js/src/networks.json';
 import strategies from '@/helpers/strategies';
 import skins from '@/helpers/skins';
 import { filterStrategies, filterSkins, filterNetworks } from '@/helpers/utils';

@@ -23,8 +23,8 @@
     "@portis/web3": "2.0.0-beta.49",
     "@primer/css": "^14.4.0",
     "@snapshot-labs/lock": "github:snapshot-labs/lock#c938fc06389cd7948870c87c7c19b338774a64ea",
-    "@snapshot-labs/snapshot-spaces": "github:vfatouros/snapshot-spaces#master",
-    "@snapshot-labs/snapshot.js": "github:vfatouros/snapshot.js#master",
+    "@vfatouros/snapshot-spaces": "github:vfatouros/snapshot-spaces#master",
+    "@vfatouros/snapshot.js": "github:vfatouros/snapshot.js#master",
     "@vue/cli-plugin-babel": "^4.4.0",
     "@vue/cli-plugin-eslint": "^4.4.0",
     "@vue/cli-plugin-typescript": "^4.4.0",
@@ -37,15 +37,6 @@
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "eslint": "^6.7.2",
-<<<<<<< HEAD
-    "fortmatic": "^2.2.1",
-    "frameguard": "^3.1.0",
-    "json-to-graphql-query": "^2.0.0",
-    "jsonexport": "^3.0.1",
-    "lodash": "^4.17.20",
-    "numeral": "^2.0.6",
-    "pretty-ms": "^7.0.1",
-=======
     "ethereumjs-util": "^7.0.7",
     "fortmatic": "^2.0.6",
     "jsonexport": "^3.0.1",
@@ -53,7 +44,6 @@
     "numeral": "^2.0.4",
     "portal-vue": "^2.1.7",
     "pretty-ms": "^7.0.0",
->>>>>>> upstream/develop
     "primer-support": "^5.0.0",
     "remarkable": "^2.0.1",
     "sanitize-html": "^1.27.5",
@@ -64,25 +54,15 @@
     "vue": "^2.6.12",
     "vue-autofocus-directive": "^1.0.4",
     "vue-cli-plugin-webpack-bundle-analyzer": "^2.0.0",
-<<<<<<< HEAD
-    "vue-i18n": "^8.22.0",
-=======
     "vue-clipboard2": "^0.3.1",
     "vue-i18n": "^8.18.1",
->>>>>>> upstream/develop
     "vue-infinite-scroll": "^2.0.2",
     "vue-jazzicon": "^0.1.3",
     "vue-router": "^3.4.6",
     "vue-textarea-autosize": "^1.1.1",
     "vuedraggable": "^2.24.1",
-<<<<<<< HEAD
-    "vuex": "^3.5.1",
-    "walletlink": "^2.0.2",
-    "web3-eth-abi": "^1.3.0"
-=======
     "vuex": "^3.4.0",
     "walletlink": "^2.0.2"
->>>>>>> upstream/develop
   },
   "devDependencies": {
     "@types/node": "^14.11.6",

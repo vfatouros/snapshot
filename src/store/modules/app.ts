@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import { getScores } from '@vfatouros/snapshot.js/src/utils';
-=======
 import Vue from 'vue';
 import { getInstance } from '@snapshot-labs/lock/plugins/vue';
-import { ipfsGet, getScores } from '@snapshot-labs/snapshot.js/src/utils';
->>>>>>> upstream/develop
+import { ipfsGet, getScores } from '@vfatouros/snapshot.js/src/utils';
 import client from '@/helpers/client';
 import getProvider from '@/helpers/provider';
 import { formatProposal, formatProposals, formatSpace } from '@/helpers/utils';
@@ -81,7 +77,9 @@ const actions = {
   getSpaces: async ({ commit }) => {
     let spaces: any = await client.request('spaces');
     spaces = Object.fromEntries(
-      Object.entries(spaces).map(space => [
+      Object.entries(spaces)
+      .filter(space => space[0] == "build" || space[0] == "metric")
+      .map(space => [
         space[0],
         formatSpace(space[0], space[1])
       ])
