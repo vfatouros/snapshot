@@ -1,15 +1,18 @@
 <template>
   <span>
-    <a @click="modalOpen = true" target="_blank" class="no-wrap">
+    <a @click="modalOpen = true" class="no-wrap">
       <Avatar :address="address" size="16" class="mr-1" />
       {{ name }}
       <Badges :address="address" :space="space" />
     </a>
-    <ModalUser
-      :open="modalOpen"
-      @close="modalOpen = false"
-      :address="address"
-    />
+    <portal to="modal">
+      <ModalUser
+        :open="modalOpen"
+        @close="modalOpen = false"
+        :space="space"
+        :address="address"
+      />
+    </portal>
   </span>
 </template>
 

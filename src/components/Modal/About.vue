@@ -21,7 +21,14 @@
     <div class="m-4 p-4 border rounded-2 text-white">
       <div class="d-flex">
         <span v-text="'Version'" class="flex-auto text-gray mr-1" />
-        {{ pkg.version }}
+        <a
+          v-if="commitSha"
+          :href="`https://github.com/${pkg.repository}/tree/${commitSha}`"
+          target="_blank"
+        >
+          {{ pkg.version }}#{{ commitSha.slice(0, 7) }}
+        </a>
+        <span v-else v-text="pkg.version" />
       </div>
       <div class="d-flex">
         <span v-text="'License'" class="flex-auto text-gray mr-1" />
@@ -29,17 +36,8 @@
       </div>
       <div class="d-flex">
         <span v-text="'Network'" class="flex-auto text-gray mr-1" />
-        {{ web3.network.network }} ({{ web3.network.chainId }})
-      </div>
-      <div class="d-flex">
-        <span v-text="'Block number'" class="flex-auto text-gray mr-1" />
-        <a
-          :href="_explorer(web3.blockNumber, 'block')"
-          target="_blank"
-          class="float-right"
-        >
-          {{ $n(web3.blockNumber) }}
-          <Icon name="external-link" class="ml-1" />
+        <a :href="web3.network.explorer" target="_blank">
+          {{ web3.network.network }} ({{ web3.network.key }})
         </a>
       </div>
       <div class="d-flex">
@@ -62,6 +60,7 @@ export default {
   data() {
     return {
       pkg,
+      commitSha: process.env.VUE_APP_COMMIT_SHA,
       hubUrl: process.env.VUE_APP_HUB_URL,
       ipfsNode: process.env.VUE_APP_IPFS_NODE
     };

@@ -44,12 +44,14 @@
     >
       See more
     </a>
-    <ModalReceipt
-      :open="modalReceiptOpen"
-      @close="modalReceiptOpen = false"
-      :authorIpfsHash="authorIpfsHash"
-      :relayerIpfsHash="relayerIpfsHash"
-    />
+    <portal to="modal">
+      <ModalReceipt
+        :open="modalReceiptOpen"
+        @close="modalReceiptOpen = false"
+        :authorIpfsHash="authorIpfsHash"
+        :relayerIpfsHash="relayerIpfsHash"
+      />
+    </portal>
   </Block>
 </template>
 
@@ -71,8 +73,7 @@ export default {
         : Object.fromEntries(Object.entries(this.votes).slice(0, 10));
     },
     titles() {
-      if (!this.space.strategies) return [this.space.symbol];
-      return this.space.strategies.map(strategy => strategy[1].symbol);
+      return this.space.strategies.map(strategy => strategy.params.symbol);
     }
   },
   methods: {

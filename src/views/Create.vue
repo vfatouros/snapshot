@@ -2,7 +2,7 @@
   <Container :slim="true">
     <div class="px-4 px-md-0 mb-3">
       <router-link
-        :to="{ name: 'proposals', params: { key } }"
+        :to="{ name: domain ? 'home' : 'proposals' }"
         class="text-gray"
       >
         <Icon name="back" size="22" class="v-align-middle" />
@@ -23,7 +23,7 @@
             <textarea-autosize
               v-model="form.body"
               maxlength="10240"
-              class="input mb-6"
+              class="input pt-1 mb-6"
               placeholder="What is your proposal?"
             />
             <div v-if="form.body">
@@ -63,7 +63,7 @@
       <div class="col-12 col-lg-4 float-left">
         <Block
           title="Actions"
-          :icon="web3.network.chainId === 4 ? 'stars' : undefined"
+          :icon="space.network === '4' ? 'stars' : undefined"
           @submit="modalPluginsOpen = true"
         >
           <div class="mb-2">
@@ -101,27 +101,33 @@
         </Block>
       </div>
     </div>
-    <ModalSelectDate
-      :value="form[selectedDate]"
-      :selectedDate="selectedDate"
-      :open="modalOpen"
-      @close="modalOpen = false"
-      @input="setDate"
-    />
-    <ModalPlugins
-      :proposal="{ ...form, choices }"
-      :value="form.metadata.plugins"
-      v-model="form.metadata.plugins"
-      :open="modalPluginsOpen"
-      @close="modalPluginsOpen = false"
-    />
+    <portal to="modal">
+      <ModalSelectDate
+        :value="form[selectedDate]"
+        :selectedDate="selectedDate"
+        :open="modalOpen"
+        @close="modalOpen = false"
+        @input="setDate"
+      />
+      <ModalPlugins
+        :proposal="{ ...form, choices }"
+        :value="form.metadata.plugins"
+        v-model="form.metadata.plugins"
+        :open="modalPluginsOpen"
+        @close="modalPluginsOpen = false"
+      />
+    </portal>
   </Container>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import draggable from 'vuedraggable';
-import spaces from '@/spaces';
+import { ipfsGet } from '@snapshot-labs/snapshot.js/src/utils';
+import { getBlockNumber } from '@/helpers/web3';
+import getProvider from '@/helpers/provider';
+
+const gateway = process.env.VUE_APP_IPFS_NODE || 'ipfs.io';
 
 export default {
   components: {
@@ -130,8 +136,10 @@ export default {
   data() {
     return {
       key: this.$route.params.key,
+      from: this.$route.params.from,
       loading: false,
       choices: [],
+      blockNumber: -1,
       form: {
         name: '',
         body: '',
@@ -149,7 +157,7 @@ export default {
   },
   computed: {
     space() {
-      return spaces[this.key];
+      return this.app.spaces[this.key];
     },
     isValid() {
       // const ts = (Date.now() / 1e3).toFixed();
@@ -163,13 +171,26 @@ export default {
         this.form.end &&
         this.form.end > this.form.start &&
         this.form.snapshot &&
+        this.form.snapshot > this.blockNumber / 2 &&
         this.choices.length >= 2 &&
         !this.choices.some(a => a.text === '')
       );
     }
   },
-  mounted() {
+  async mounted() {
     this.addChoice(2);
+    this.blockNumber = await getBlockNumber(getProvider(this.space.network));
+    this.form.snapshot = this.blockNumber;
+    if (this.from) {
+      try {
+        const proposal = await ipfsGet(gateway, this.from);
+        const msg = JSON.parse(proposal.msg);
+        this.form = msg.payload;
+        this.choices = msg.payload.choices.map((text, key) => ({ key, text }));
+      } catch (e) {
+        console.log(e);
+      }
+    }
   },
   methods: {
     ...mapActions(['send']),
@@ -192,7 +213,7 @@ export default {
       this.form.choices = this.choices.map(choice => choice.text);
       try {
         const { ipfsHash } = await this.send({
-          token: this.space.address,
+          space: this.space.key,
           type: 'proposal',
           payload: this.form
         });

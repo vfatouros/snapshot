@@ -16,8 +16,18 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  props: ['open']
+  props: ['open'],
+  watch: {
+    open(val, prev) {
+      if (val !== prev) this.toggleModal();
+    }
+  },
+  methods: {
+    ...mapActions(['toggleModal'])
+  }
 };
 </script>
 
@@ -49,8 +59,8 @@ export default {
     padding-left: 0 !important;
     padding-right: 0 !important;
     max-width: 440px;
-
-    max-height: calc(100vh - 80px);
+    overflow-y: auto !important;
+    max-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     z-index: 999;

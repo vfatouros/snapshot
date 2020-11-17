@@ -8,8 +8,11 @@
       type="text"
       autocorrect="off"
       autocapitalize="none"
-      class="border-0 input flex-auto"
+      class="border-0 input flex-auto width-full"
     />
+    <a @click="clearInput">
+      <Icon v-if="value" name="close" size="12" class="mb-1" />
+    </a>
   </div>
 </template>
 
@@ -18,7 +21,13 @@ export default {
   props: ['value', 'placeholder'],
   methods: {
     handleInput(e) {
-      this.$emit('input', e.target.value);
+      const input = e.target.value;
+      this.$router.push({ query: input ? { q: input } : {} });
+      this.$emit('input', input);
+    },
+    clearInput() {
+      this.$router.push({});
+      this.$emit('input', '');
     }
   }
 };
